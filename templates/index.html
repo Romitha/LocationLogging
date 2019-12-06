@@ -1,0 +1,105 @@
+<!--<html>-->
+<!--    <head>-->
+<!--        {% if title %}-->
+<!--        <title>{{ title }} - Microblog</title>-->
+<!--        {% else %}-->
+<!--        <title>Welcome to Microblog!</title>-->
+<!--        {% endif %}-->
+<!--    </head>-->
+<!--    <body>-->
+<!--        <h1>Hello, {{ user.username }}!</h1>-->
+<!--    </body>-->
+<!--</html>-->
+
+
+<!--
+Author: Colorlib
+Author URL: https://colorlib.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BIONS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script type="application/x-javascript">
+         addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
+
+
+
+
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <!-- Custom Theme files -->
+    <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet" type="text/css" media="all"/>
+    <!-- //Custom Theme files -->
+    <!-- web font -->
+    <link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
+    <!-- //web font -->
+</head>
+<body>
+<!-- main -->
+<div class="main-w3layouts wrapper">
+    <h1>Device Details Gathering</h1>
+    <div class="main-agileinfo">
+        <div class="agileits-top">
+            <form action="#" method="post" role="form" id="form">
+                <input class="text" id="device_id" type="text" name="device_id" placeholder="Device ID" required="">
+                <input class="text" id="room_no" type="text" name="room_no" placeholder="Room No" required="">
+                <input type="submit" value="SAVE LOG" id="btnSubmit">
+            </form>
+            <div class="wthree-text">
+                <label class="anim">
+                    <span id="hint">hint</span>
+                </label>
+            </div>
+            <br>
+            <br>
+            <br>
+            <p>Download Log file <a href="/downloadLogFile" target="_blank"> Download Now!</a></p>
+        </div>
+    </div>
+    <!-- copyright -->
+    <div class="colorlibcopy-agile">
+        <p>© 2018 BIONS Logger Colletion app | Design by <a href="https://bions.lk/" target="_blank">J.R.Algewatta</a>
+        </p>
+    </div>
+    <!-- //copyright -->
+    <ul class="colorlib-bubbles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<!-- //main -->
+<script>
+$("form").submit(function(e){
+    e.preventDefault();
+    $.ajax({
+        url: '/saveLogDetails',
+        data: $('form').serialize(),
+        type: 'POST',
+        success: function(response) {
+            console.log(response);
+            $("#hint").text("Successfully Saved");
+            $("#device_id").val('');
+            $("#room_no").val('');
+        },
+        error: function(error) {
+            console.log(error);
+        }
+    });
+});
+
+</script>
+</body>
+</html>
