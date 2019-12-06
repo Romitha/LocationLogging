@@ -58,7 +58,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <br>
             <br>
             <br>
-            <p>Download Log file <a href="/downloadLogFile" target="_blank"> Download Now!</a></p>
+            <p>Download Log file <a target="_blank" href="/getBionsLogFile"> Download Now!</a></p>
         </div>
     </div>
     <!-- copyright -->
@@ -82,17 +82,33 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </div>
 <!-- //main -->
 <script>
+function downloadLog(){
+    $.ajax({
+        url: '/downloadLogFile',
+        type: 'GET',
+        success: function(response) {
+            console.log(response);
+            $("#hint").text("Downloaded");
+        },
+        error: function(error) {
+            console.log(error);
+        }
+    });
+}
+
 $("form").submit(function(e){
     e.preventDefault();
+    ts = (new Date()).getTime()
+    var data = $('form').serializeArray();
+    data.push({name: 'ts', value: ts});
+    console.log(data)
     $.ajax({
         url: '/saveLogDetails',
-        data: $('form').serialize(),
+        data: data,
         type: 'POST',
         success: function(response) {
             console.log(response);
             $("#hint").text("Successfully Saved");
-            $("#device_id").val('');
-            $("#room_no").val('');
         },
         error: function(error) {
             console.log(error);

@@ -51,13 +51,15 @@ def create_app(env_name):
     def saveLogDetails():
         device_id = request.form['device_id']
         room_no = request.form['room_no']
+        ts = request.form['ts']
         if device_id != "" and room_no != "":
-            LoggerModel.createLogDetails(device_id, room_no)
+            LoggerModel.createLogDetails(device_id, room_no, ts)
         return json.dumps({'status': 'OK', 'device_id': device_id, 'room_no': room_no})
 
-    @app.route('/downloadLogFile', methods=['GET'])
-    def downloadLogFile():
-        log_file = LoggerModel.DownloadLogFile()
+    @app.route('/getBionsLogFile')
+    def downloadBionsLogFile():
+        print('downloadLogFile')
+        log_file = LoggerModel.DownloadLogFileFromLocal()
         return log_file
 
     return app
