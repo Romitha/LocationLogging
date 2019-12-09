@@ -25,9 +25,9 @@ class LoggerModel:
         print('DownloadLogFile')
 
         if path is None:
-            path = os.path.abspath('info.log')
+            path = os.path.abspath('bions.log')
             print(path)
         try:
-            return send_file(path, as_attachment=True)
+            return send_file(path, as_attachment=True, cache_timeout=0)
         except Exception as e:
             print(e)

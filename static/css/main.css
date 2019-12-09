@@ -220,7 +220,7 @@ input[type="submit"] {
   letter-spacing: 4px;
 }
 
-#btnSubmit{
+.btnSubmit{
   font-size: .9em;
   color: #fff;
   background: #76b852;

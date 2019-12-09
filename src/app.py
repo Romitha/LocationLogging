@@ -23,7 +23,7 @@ def create_app(env_name):
     bcrypt.init_app(app)
 
     # initialize the log handler
-    logHandler = RotatingFileHandler('info.log', maxBytes=1000, backupCount=1)
+    logHandler = RotatingFileHandler('bions.log', backupCount=1)
     # set the log handler level
     logHandler.setLevel(logging.INFO)
     # set the app logger level

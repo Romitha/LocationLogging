@@ -23,6 +23,7 @@ class Development(object):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     JWT_SECRET_KEY = os.getenv('JWT_SECRET_KEY')
     MONGO_URI = os.getenv('DATABASE_URL')
+    SEND_FILE_MAX_AGE_DEFAULT = 0
 
 
 class Production(object):
